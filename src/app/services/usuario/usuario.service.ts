@@ -27,31 +27,36 @@ export class UsuarioService {
   estaLogueado() {
    // return ( this.token.length > 5 ) ? true : false;
    if ( this.token.length > 5 ) {
-   let stringExpiraToken = localStorage.getItem('expiratoken');
-   stringExpiraToken = stringExpiraToken.substring(0, 10);
+   if(localStorage.getItem('expiratoken')){
+    let stringExpiraToken = localStorage.getItem('expiratoken');
+    stringExpiraToken = stringExpiraToken.substring(0, 10);
 
 
-   const fechaExpiraToken = Date.parse(stringExpiraToken);
-   const fechaHoy = new Date();
-   const fechaHoyA = fechaHoy.getFullYear().toString();
-   let fechaHoyM = (fechaHoy.getMonth() + 1).toString();
-   let fechaHoyD = fechaHoy.getDate().toString();
+    const fechaExpiraToken = Date.parse(stringExpiraToken);
+    const fechaHoy = new Date();
+    const fechaHoyA = fechaHoy.getFullYear().toString();
+    let fechaHoyM = (fechaHoy.getMonth() + 1).toString();
+    let fechaHoyD = fechaHoy.getDate().toString();
 
-   if ( fechaHoyM.length === 1 ) {
-    fechaHoyM = ( '0' + fechaHoyM );
-   }
+    if ( fechaHoyM.length === 1 ) {
+      fechaHoyM = ( '0' + fechaHoyM );
+    }
 
-   if ( fechaHoyD.length === 1 ) {
-    fechaHoyD = ( '0' + fechaHoyD );
-   }
+    if ( fechaHoyD.length === 1 ) {
+      fechaHoyD = ( '0' + fechaHoyD );
+    }
 
-   const fechaHoyC = Date.parse(fechaHoyA + '-' + fechaHoyM + '-' + fechaHoyD);
+    const fechaHoyC = Date.parse(fechaHoyA + '-' + fechaHoyM + '-' + fechaHoyD);
 
-   
+    
 
-    if ( fechaExpiraToken > fechaHoyC ) {
-      return true;
-    } else {
+      if ( fechaExpiraToken > fechaHoyC ) {
+        return true;
+      } else {
+        this.logoutsinboton();
+        return false;
+      }
+    }else{
       this.logoutsinboton();
       return false;
     }

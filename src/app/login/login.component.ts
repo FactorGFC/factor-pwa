@@ -51,8 +51,7 @@ export class LoginComponent implements OnInit {
     this._usuarioService.login( usuario, forma.value.recuerdame )
                   .subscribe( correcto => {
                     console.log('correcto');
-                    return;
-                    this.router.navigate(['/dashboard']);
+                    this.router.navigate(['/alta']);
 
                 }, (err) => {
                   swal2.fire(
