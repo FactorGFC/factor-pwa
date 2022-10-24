@@ -1,4 +1,4 @@
-<section id="wrapper" class="login-register login-sidebar" style="background-image:url(../assets/images/background/buildings.jpg);">
+<section id="wrapper" class="login-register login-sidebar" style=" margin-top: 30%;">
     <div class="login-box card">
         <div class="card-body">
             <div *ngIf="!recuperacont">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group text-center m-t-20">
                         <div class="col-xs-12">
-                            <span (click)="recuperarcont()" style="cursor: pointer;">Recuperar contraseña</span>
+                            <a (click)="recuperarcont()" style="cursor: pointer; text-decoration: underline; color: blue;">Recuperar contraseña</a>
                         </div>
                     </div>
                 </form>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group text-center m-t-20">
                         <div class="col-xs-12">
-                            <span (click)="recuperarcont()" style="cursor: pointer;">Firmarse</span>
+                            <span (click)="recuperarcont()" style="cursor: pointer; text-decoration: underline; color: blue;">Firmarse</span>
                         </div>
                     </div>
                 </form>

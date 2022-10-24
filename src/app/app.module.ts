@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AltaFacturasComponent } from './pages/alta-facturas/alta-facturas.component';
 import { ResetpswdComponent } from './login/resetpswd/resetpswd.component';
 import { PagesModule } from './pages/pages.module';
+import {ButtonModule} from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,14 @@ import { PagesModule } from './pages/pages.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ButtonModule,
+    TableModule,
     // AppRoutingModule,
     APP_ROUTES,
     PagesModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

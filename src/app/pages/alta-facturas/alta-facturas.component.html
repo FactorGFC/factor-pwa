@@ -1,7 +1,27 @@
-<p>alta-facturas works!</p>
-
-<button (click)="abrirCamara()">ABRIR CAMARA</button>
-<button (click)="tomarFoto()">TOMAR FOTO</button>
 
 
-<video id="player" autoplay style="height: 300px;"></video>
+<br>
+
+<div style="text-align: center;">
+    <h2>Alta de facturas</h2>
+    
+    <video id="player" autoplay style="height: 90%; border-radius: 5%; position: static; margin-bottom: 10%;"></video>
+
+    <br>
+
+    
+    <button *ngIf="tomada" (click)="subirFoto()" style="margin-right: 10%;" type="button" class="btn btn-outline-success btn-lg btn-floating" data-mdb-ripple-color="dark">
+      <i class="fas fa-check"></i>
+      </button>
+
+    <button *ngIf="!tomada" type="button" (click)="tomarFoto()" class="btn btn-outline-primary btn-rounded" style="position: static;">Tomar Foto</button>
+
+    <button *ngIf="tomada" style="margin-left: 10%;" (click)="cancelar()" type="button" class="btn btn-outline-danger btn-lg btn-floating" data-mdb-ripple-color="dark">
+      <i class="fas fa-times"></i>
+      </button>
+
+
+
+    
+
+</div>

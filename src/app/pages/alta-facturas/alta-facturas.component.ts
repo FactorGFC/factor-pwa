@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CamaraService } from '../../services/camara.service';
+import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Component({
   selector: 'app-alta-facturas',
@@ -8,20 +9,40 @@ import { CamaraService } from '../../services/camara.service';
 })
 export class AltaFacturasComponent implements OnInit {
 
-  constructor(private camaraService:CamaraService) { }
+  tomada = false;
+  foto;
+
+  constructor(private camaraService:CamaraService,
+              private _usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
+    this.abrirCamara();
   }
 
   abrirCamara(){
+    this.foto = '';
     this.camaraService.abrirCamara();
   }
 
   tomarFoto(){
-    this.camaraService.tomarFoto();//Esto regresa la base 64 de la foto
+    this.tomada = true;
 
+    this.foto = this.camaraService.tomarFoto();//Esto regresa la base 64 de la foto
     
     this.camaraService.cerrarCamara();
+  }
+
+  logout(){
+    this._usuarioService.logout();
+  }
+
+  cancelar(){
+    this.abrirCamara();
+
+  }
+
+  subirFoto(){
+    console.log(this.foto);
   }
 
 }
