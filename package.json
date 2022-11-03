@@ -23,6 +23,8 @@
     "@fortawesome/angular-fontawesome": "^0.11.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@sweetalert2/ngx-sweetalert2": "^11.0.0",
+    "@tensorflow-models/coco-ssd": "^2.2.2",
+    "@tensorflow/tfjs": "^4.0.0",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
     "jspdf": "^2.5.1",
