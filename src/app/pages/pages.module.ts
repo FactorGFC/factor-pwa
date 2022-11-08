@@ -19,6 +19,10 @@ import { UsuarioService } from '../services/usuario/usuario.service';
 import { CamaraService } from '../services/camara.service';
 import { PagesComponent } from './pages.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import {MatTableModule} from '@angular/material/table';
+
 
 
 @NgModule({
@@ -33,7 +37,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    PAGES_ROUTES
+    PAGES_ROUTES,
+    MatTableModule,
+    AngularFireModule.initializeApp(environment.firebase),
     // PagesRoutingModule
   ],
   providers: [

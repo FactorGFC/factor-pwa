@@ -119,7 +119,7 @@ export class AltasolicitudesComponent implements OnInit {
           title: 'Cargando',
           allowOutsideClick: false
         });
-        swal2.showLoading();
+        swal2.showLoading(null);
         this.horalimite = false;
         this.idcontsuplier = '';
         this.idcontcomany = '';
@@ -484,7 +484,7 @@ export class AltasolicitudesComponent implements OnInit {
         title: 'Cargando',
         allowOutsideClick: false
    });
-      swal2.showLoading();
+      swal2.showLoading(null);
       const moneda: any = document.getElementById('moneda');
   
       const valormoneda = moneda.options[moneda.selectedIndex].value;
@@ -642,7 +642,7 @@ export class AltasolicitudesComponent implements OnInit {
         title: 'Cargando',
         allowOutsideClick: false
    });
-      swal2.showLoading();
+      swal2.showLoading(null);
       const moneda: any = document.getElementById('moneda');
   
       const valormoneda = moneda.options[moneda.selectedIndex].value;
@@ -883,7 +883,7 @@ export class AltasolicitudesComponent implements OnInit {
       '',
       'info'
       )
-          swal2.showLoading();
+          swal2.showLoading(null);
           this.facturasReporte = [];
           this._solicitudesservice.confirmacion(data).subscribe(
            resp => {
@@ -1012,7 +1012,7 @@ export class AltasolicitudesComponent implements OnInit {
       '',
       'info'
       )
-        swal2.showLoading();
+        swal2.showLoading(null);
         this.facturasReporte = [];
         this._solicitudesservice.confirmacion(data).subscribe( resp => {
           // this.respuesta = resp;
@@ -1139,7 +1139,7 @@ export class AltasolicitudesComponent implements OnInit {
       '',
       'info'
       )
-          swal2.showLoading();
+          swal2.showLoading(null);
           this.facturasReporte = [];
           this._solicitudesservice.confirmacion(data).subscribe(
           resp => {
@@ -1268,7 +1268,7 @@ export class AltasolicitudesComponent implements OnInit {
       '',
       'info'
       )
-        swal2.showLoading();
+        swal2.showLoading(null);
         this.facturasReporte = [];
         this._solicitudesservice.confirmacion(data).subscribe( resp => {
           // this.respuesta = resp;
@@ -1333,7 +1333,7 @@ export class AltasolicitudesComponent implements OnInit {
               showCancelButton: false,
               allowOutsideClick: false,
               didOpen: () => {
-                swal2.showLoading();
+                swal2.showLoading(null);
               }
             })
           if (environment.CLIENTE === 'FACTORGFCGLOBAL') {
@@ -1382,7 +1382,7 @@ export class AltasolicitudesComponent implements OnInit {
           title: 'Cargando',
           allowOutsideClick: false
      });
-      swal2.showLoading();
+      swal2.showLoading(null);
       let total = 0 ;
       let fechaMayorFactura = '';
       let fechaMayorDueDate = '';
@@ -1522,7 +1522,7 @@ export class AltasolicitudesComponent implements OnInit {
           title: 'Cargando',
           allowOutsideClick: false
      });
-      swal2.showLoading();
+      swal2.showLoading(null);
       let total = 0 ;
       let fechaMayorFactura = '';
       let fechaMayorDueDate = '';

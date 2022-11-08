@@ -14,14 +14,19 @@ export const environment = {
   SECRET_KEY: '93302eef21f513a83748e5104874bb7d',
   CLIENTE: 'FACTORGFCGLOBAL',
   firebase: {
-    apiKey: 'AIzaSyDYG3emwtZxKZP_hyzL0vv4nOtzs80wDbM',
-    authDomain: 'devfactoring.firebaseapp.com',
-    databaseURL: 'https://devfactoring.firebaseio.com',
-    projectId: 'devfactoring',
-    storageBucket: 'devfactoring.appspot.com',
-    messagingSenderId: '22228535082',
-    appId: '1:22228535082:web:fa11da5b84bbee3b5a0053',
-    measurementId: 'G-9H98G93ZF2'
+    apiKey: "AIzaSyBk4tGU4agxn7YD1MLT31bNNDL1hTiiHlE",
+
+  authDomain: "factorpwa-17678.firebaseapp.com",
+
+  projectId: "factorpwa-17678",
+
+  storageBucket: "factorpwa-17678.appspot.com",
+
+  messagingSenderId: "675105952750",
+
+  appId: "1:675105952750:web:1e766238e48fd97d1574ff",
+
+  measurementId: "G-TEMW6X3EHJ"
   }
 
 };

@@ -131,7 +131,7 @@
                     </div>
                 <!-- </div> -->
                 <div *ngIf="muestratabla">
-                    <p-table [columns]="cols" [value]="facturas" selectionMode="multiple" [(selection)]="selectedCars2">
+                    <p-table responsiveLayout="stack" [columns]="cols" [value]="facturas" selectionMode="multiple" [(selection)]="selectedCars2">
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th style="width: 3em">
