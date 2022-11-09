@@ -22,6 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -39,6 +40,7 @@ import {MatTableModule} from '@angular/material/table';
     FontAwesomeModule,
     PAGES_ROUTES,
     MatTableModule,
+    MatTabsModule,
     AngularFireModule.initializeApp(environment.firebase),
     // PagesRoutingModule
   ],

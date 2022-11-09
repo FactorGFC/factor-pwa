@@ -1,13 +1,19 @@
 
-<div class="row container">
+<!-- <div class="row container">
     <div class="col">
         <button style="float: right;" [routerLink]="['alta']">Alta Facturas</button>
     </div>
     <div class="col">
         <button  style="float: left;" [routerLink]="['altaSolicitudes']">Alta Solicitudes</button>
     </div>
-</div>
+</div> -->
 
+<div class="container">
+    <nav mat-tab-nav-bar>
+        <a mat-tab-link mat-align-tabs="start" [active]="action == 'factura'" (click)="change('factura')" [routerLink]="['alta']">Alta Facturas</a>
+        <a mat-tab-link mat-align-tabs="end" [active]="action == 'solicitud'" (click)="change('solicitud')" [routerLink]="['altaSolicitudes']">Alta Solicitudes</a>
+    </nav>
+</div>
 <router-outlet></router-outlet>
 
 <a class="btn btn-primary" style="background-color: #55acee; position: fixed; bottom: 0; left: 10%; width: 80%;" (click)="logout()"  role="button"

@@ -8,6 +8,8 @@ import { UsuarioService } from '../services/usuario/usuario.service';
 })
 export class PagesComponent implements OnInit {
 
+  action = 'facturas';
+
   constructor(private _usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
@@ -15,6 +17,11 @@ export class PagesComponent implements OnInit {
 
   logout(){
     this._usuarioService.logout();
+  }
+
+  change(palabra){
+    this.action = palabra;
+    console.log(this.action);
   }
 
 }

@@ -66,12 +66,70 @@
                             </div>
                         </div>
                     <!-- </div> -->
-                    <div class="col-4">
+
+                    <div *ngIf="muestratabla" style="font-size: 3vw;">
+                        <p-table responsiveLayout="scroll" styleClass="p-datatable-gridlines" [columns]="cols" [value]="facturas" selectionMode="multiple" [(selection)]="selectedCars2">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <th style="width: 5%;">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th *ngFor="let col of columns" style="width: 20%;">
+                                        {{col.header}}
+                                    </th>
+                                    <!-- <th>Total a operar</th>
+                                    <th>Porcentaje</th> -->
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns" let-facturas let-rowIndex="rowIndex">
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                                    </td>
+                                    <td *ngFor="let col of columns">
+                                        {{rowData[col.field]}}
+                                    </td>
+                                    <!-- <td>
+    
+                                        {{rowData.totalaoperar}}
+    
+                                    </td>
+                                    <td pEditableColumn>
+                                        <p-cellEditor>
+                                            <ng-template pTemplate="input">
+                                                <input pInputText type="number" [(ngModel)]="rowData.porcentaje" [ngModelOptions]="{standalone: true}">
+                                            </ng-template>
+                                            <ng-template pTemplate="output">
+                                                {{rowData.porcentaje}}%
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td> -->
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="summary">
+                                <div class="row">
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <div></div>
+                                    </div>
+                                    <div class="col col-lg-3">
+                                        TOTAL = ${{totalaoperar}}
+                                        <button class="btn btn-outline-info" style="margin-left: 70px;" (click)="actualizatosinfiltro()">Calcular</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+    
+                        </p-table>
+                        <button class="btn btn-outline-info mt-2" (click)="recalculasinfiltro()" [disabled]="c.invalid">Simular</button>
+                    </div>
+
+
+                    <div class="col mt-3">
                         <div class="form-group m-t-20">
-                            <table class="table full-color-table full-info-table hover-table" *ngFor="let item of simulacion">
+                            <table style="font-size: 3vw;" class="table full-color-table full-info-table hover-table" *ngFor="let item of simulacion">
                                 <thead>
                                     <tr class="bg-primary">
-                                        <th>Simulador Costo Financiero Cliente</th>
+                                        <th style="color: white;">Simulador Costo Financiero Cliente</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -116,7 +174,7 @@
                                 </div>
                                 <thead>
                                     <tr class="bg-primary">
-                                        <th>Firmantes</th>
+                                        <th style="color: white;">Firmantes</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -130,61 +188,7 @@
                         </div>
                     </div>
                 <!-- </div> -->
-                <div *ngIf="muestratabla">
-                    <p-table responsiveLayout="stack" [columns]="cols" [value]="facturas" selectionMode="multiple" [(selection)]="selectedCars2">
-                        <ng-template pTemplate="header" let-columns>
-                            <tr>
-                                <th style="width: 3em">
-                                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                                </th>
-                                <th *ngFor="let col of columns">
-                                    {{col.header}}
-                                </th>
-                                <!-- <th>Total a operar</th>
-                                <th>Porcentaje</th> -->
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-rowData let-columns="columns" let-facturas let-rowIndex="rowIndex">
-                            <tr>
-                                <td>
-                                    <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-                                </td>
-                                <td *ngFor="let col of columns">
-                                    {{rowData[col.field]}}
-                                </td>
-                                <!-- <td>
-
-                                    {{rowData.totalaoperar}}
-
-                                </td>
-                                <td pEditableColumn>
-                                    <p-cellEditor>
-                                        <ng-template pTemplate="input">
-                                            <input pInputText type="number" [(ngModel)]="rowData.porcentaje" [ngModelOptions]="{standalone: true}">
-                                        </ng-template>
-                                        <ng-template pTemplate="output">
-                                            {{rowData.porcentaje}}%
-                                        </ng-template>
-                                    </p-cellEditor>
-                                </td> -->
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="summary">
-                            <div class="row">
-                                <div class="col"></div>
-                                <div class="col">
-                                    <div></div>
-                                </div>
-                                <div class="col col-lg-3">
-                                    TOTAL = ${{totalaoperar}}
-                                    <button class="btn btn-outline-info" style="margin-left: 70px;" (click)="actualizatosinfiltro()">Calcular</button>
-                                </div>
-                            </div>
-                        </ng-template>
-
-                    </p-table>
-                    <button class="btn btn-outline-info mt-2" (click)="recalculasinfiltro()" [disabled]="c.invalid">Simular</button>
-                </div>
+                
                 <div *ngIf="!muestratabla">
                     <p-table [columns]="cols" [value]="facturasfiltradas" selectionMode="multiple" [(selection)]="selectedCars1">
                         <ng-template pTemplate="header" let-columns>
