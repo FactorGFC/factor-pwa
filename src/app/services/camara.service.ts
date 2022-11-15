@@ -66,6 +66,10 @@ export class CamaraService {
         this.videoNode = document.getElementById('player');
         this.videoNode.srcObject = stream;
         this.stream = stream;
+        // console.log('test', this.videoNode.videoHeight, this.videoNode.videoWidth)
+        // let height = this.videoNode.videoHeight / (this.videoNode.videoWidth/320);
+        // this.videoNode.setAttribute('width', 320);
+        // this.videoNode.setAttribute('height', height);
     });
 
     })

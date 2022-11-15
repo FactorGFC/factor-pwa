@@ -8,10 +8,10 @@
     </div>
 </div> -->
 
-<div class="container">
+<div class="container" style="background-color: #55acee;">
     <nav mat-tab-nav-bar>
-        <a mat-tab-link mat-align-tabs="start" [active]="action == 'factura'" (click)="change('factura')" [routerLink]="['alta']">Alta Facturas</a>
-        <a mat-tab-link mat-align-tabs="end" [active]="action == 'solicitud'" (click)="change('solicitud')" [routerLink]="['altaSolicitudes']">Alta Solicitudes</a>
+        <a mat-tab-link mat-align-tabs="start" style="color: white;" [active]="action == 'factura'" (click)="change('factura')" [routerLink]="['alta']">Alta Facturas</a>
+        <a mat-tab-link mat-align-tabs="end" style="color: white;" [active]="action == 'solicitud'" (click)="change('solicitud')" [routerLink]="['altaSolicitudes']">Alta Solicitudes</a>
     </nav>
 </div>
 <router-outlet></router-outlet>

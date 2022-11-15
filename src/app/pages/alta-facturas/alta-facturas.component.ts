@@ -15,13 +15,16 @@ export class AltaFacturasComponent implements OnInit {
   foto;
   idu = localStorage.getItem('id');
   company = '';
+  elemento; 
+  src = '/assets/images/noimage.jpg';
+  defaultsrc = '/assets/images/noimage.jpg';
 
   constructor(private camaraService:CamaraService,
               private _usuarioService: UsuarioService,
               private _solicitudesservice: AltaSolicitudesService) { }
 
   ngOnInit(): void {
-    this.abrirCamara();
+    // this.abrirCamara();
 
     this._solicitudesservice.getCadenaProveedor(this.idu).subscribe( resp => {
       if (resp.length > 0) {
@@ -30,17 +33,28 @@ export class AltaFacturasComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.camaraService.cerrarCamara();
+  }
+
   abrirCamara(){
-    this.foto = '';
+    this.foto = '';    
     this.camaraService.abrirCamara();
     
   }
 
   tomarFoto(){
+    document.getElementById('cam').click();
+    /* 
+    VERSION SIN CAMARA NATIVA
+
+
     this.tomada = true;
 
     this.foto = this.camaraService.tomarFoto();//Esto regresa la base 64 de la foto
-    this.camaraService.cerrarCamara();
+    this.camaraService.cerrarCamara(); */
   }
 
   logout(){
@@ -48,11 +62,35 @@ export class AltaFacturasComponent implements OnInit {
   }
 
   cancelar(){
-    this.abrirCamara();
+    // this.abrirCamara();
     this.tomada = false;
+    document.getElementById('img').setAttribute('src', this.defaultsrc);
+  }
+
+  camara(event: Event){
+    const element = event.currentTarget as HTMLInputElement;
+    let img = '';
+
+    var reader = new FileReader();
+    reader.readAsDataURL(element.files[0]);
+    reader.onload = function () {
+      // console.log(reader.result);
+      img = reader.result.toString();
+      localStorage.setItem('cam', img);
+      document.getElementById('img').setAttribute('src', img);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+
+    // this.camaraService.cerrarCamara();
+    this.foto = img;
+    this.tomada = true;
   }
 
   subirFoto(){
+    this.foto = localStorage.getItem('cam');
+    localStorage.removeItem('cam');
     if(this.company == '') {
       swal2.fire('Atención', 'El usuario no está asignado a una compañía', 'info');
       return;
@@ -68,9 +106,11 @@ export class AltaFacturasComponent implements OnInit {
       params['document_shot'] = document_shot;
       this.camaraService.subirFoto(params).subscribe(resp => {
         swal2.fire('Éxito', 'Imagen enviada correctamente', 'success');
-        this.abrirCamara();
+        // this.abrirCamara();
+        document.getElementById('img').setAttribute('src', this.defaultsrc);
         this.tomada = false;
       }, err => {
+        console.log(err);
         let error = '';
         err.error.errors.forEach(e => {
           error += e;

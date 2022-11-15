@@ -4,8 +4,12 @@
 
 <div style="text-align: center;">
     <h2>Alta de facturas</h2>
+
+    <input id="cam" style="display: none;" *ngIf="!tomada" type="file" capture="camera" [(ngModel)]="elemento" (change)="camara($event)">
+
+    <img id="img" src="{{src}}" style="width: 90%; margin-bottom: 10%;">
     
-    <video id="player" autoplay style="width: 90%; border-radius: 5%; position: static; margin-bottom: 10%;"></video>
+    <!-- <video *ngIf="!tomada" id="player" autoplay style="width: 90%; border-radius: 5%; position: static; margin-bottom: 10%;"></video> -->
 
     <br>
 

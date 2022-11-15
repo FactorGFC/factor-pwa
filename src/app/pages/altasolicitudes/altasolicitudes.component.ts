@@ -233,7 +233,7 @@ export class AltasolicitudesComponent implements OnInit {
         );
 
         this.cols = [
-        { field: 'invoice_folio', header: 'Numero de Factura' },
+        { field: 'invoice_folio', header: 'Número de Factura' },
         // { field: 'uuid', header: 'UUID' },
         { field: 'status', header: 'Estatus' },
         // { field: 'invoice_date', header: 'Fecha Factura' },
