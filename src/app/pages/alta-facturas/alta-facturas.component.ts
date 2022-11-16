@@ -67,9 +67,93 @@ export class AltaFacturasComponent implements OnInit {
     document.getElementById('img').setAttribute('src', this.defaultsrc);
   }
 
-  camara(event: Event){
+  comprimirImagen(imagenComoArchivo, porcentajeCalidad){
+		return new Promise((resolve, reject) => {
+			const $canvas = document.createElement("canvas");
+			const imagen = new Image();
+			imagen.onload = () => {
+				$canvas.width = imagen.width;
+				$canvas.height = imagen.height;
+				$canvas.getContext("2d").drawImage(imagen, 0, 0);
+				$canvas.toBlob(
+					(blob) => {
+						if (blob === null) {
+							return reject(blob);
+						} else {
+							resolve(blob);
+						}
+					},
+					"image/jpeg",
+					porcentajeCalidad / 100
+				);
+			};
+			imagen.src = URL.createObjectURL(imagenComoArchivo);
+		});
+	};
+
+  async camara(event: Event){
     const element = event.currentTarget as HTMLInputElement;
     let img = '';
+
+    var resizedImage;
+
+    // Read in file
+    var file = element.files[0];
+
+    // Ensure it's an image
+    if(file.type.match(/image.*/)) {
+        console.log('An image has been loaded');
+
+        // Load the image
+        var reader = new FileReader();
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.onload = function (imageEvent) {
+
+                // Resize the image
+                var canvas = document.createElement('canvas'),
+                    max_size = 1200,
+                    width = image.width/3,
+                    height = image.height/3;
+                // if (width > height) {
+                //     if (width > max_size) {
+                //         height *= max_size / width;
+                //         width = max_size;
+                //     }
+                // } else {
+                //     if (height > max_size) {
+                //         width *= max_size / height;
+                //         height = max_size;
+                //     }
+                // }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                resizedImage = canvas.toDataURL('image/jpeg');
+                img = resizedImage;
+                localStorage.setItem('cam', img);
+                document.getElementById('img').setAttribute('src', img);
+            }
+            image.src = readerEvent.target.result.toString();
+        }
+        reader.readAsDataURL(file);
+      }
+      this.foto = img;
+      this.tomada = true;
+
+    /*
+    
+    hace pequeño pero falla lo del blob
+    
+    const blob = await this.comprimirImagen(element.files[0], 30);
+    var url = URL.createObjectURL(blob);
+    console.log('pup', blob); */
+
+    
+
+    // es el que esta funcionando, con problemas de tamaño
+    
+    /* let img = '';
 
     var reader = new FileReader();
     reader.readAsDataURL(element.files[0]);
@@ -85,7 +169,7 @@ export class AltaFacturasComponent implements OnInit {
 
     // this.camaraService.cerrarCamara();
     this.foto = img;
-    this.tomada = true;
+    this.tomada = true; */
   }
 
   subirFoto(){
@@ -112,11 +196,16 @@ export class AltaFacturasComponent implements OnInit {
       }, err => {
         console.log(err);
         let error = '';
-        err.error.errors.forEach(e => {
-          error += e;
-          error += '<br>';
-        });
-        swal2.fire('Atención', error, 'info');
+        try{
+          err.error.errors.forEach(e => {
+            error += e;
+            error += '<br>';
+          });
+          swal2.fire('Atención', error, 'info');
+        }
+        catch{
+          swal2.fire('Atención', 'Ha ocurrido un error, contacte al Administrador', 'info');
+        }
       })
 
   }
